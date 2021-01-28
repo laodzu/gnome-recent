@@ -1,0 +1,42 @@
+#!/bin/bash
+
+usage() {
+    echo "usage: $0 [-h] [<n>]"                                               1>&2
+    echo "       Print entry from GNOMEs recently used URI list."             1>&2
+    echo "       No argument will select the last entry, otherwise the <n>th" 1>&2
+    echo "       entry from the end will be picked."                          1>&2
+    exit 1
+}
+
+function urldecode()
+{
+    while read
+    do
+	echo -e ${REPLY//%/\\x}
+    done
+}
+
+while getopts hv option
+do
+    case $option in
+	h|*)  usage
+	      ;;
+    esac
+done
+
+case $# in
+    0)  index=-1
+	;;
+    1)  index=-$1
+	;;
+    *)  usage
+	;;
+esac
+
+item=$(xq -r ".xbel.bookmark[$index].\"@href\"" ~/.local/share/recently-used.xbel)
+if [[ "$item" =~ ^file:// ]]
+then
+    echo "${item/#file:\/\//}" | urldecode
+else
+    echo "$item"
+fi
