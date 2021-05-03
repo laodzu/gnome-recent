@@ -10,9 +10,9 @@ usage() {
 
 function urldecode()
 {
-    while read
+    while read -r
     do
-	echo -e ${REPLY//%/\\x}
+	echo -e "${REPLY//%/\\x}"
     done
 }
 
