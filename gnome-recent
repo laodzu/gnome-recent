@@ -16,7 +16,7 @@ function urldecode()
     done
 }
 
-while getopts hv option
+while getopts h option
 do
     case $option in
 	h|*)  usage
