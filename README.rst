@@ -27,19 +27,6 @@ download directory or the filename itself, this is then easy to do:
   Uncompressing arm toolchain for Zephyr  100%  
   Enter target directory for SDK (default: /root/zephyr-sdk/): 
 
-Should the filename contain spaces or other special characters, be
-sure to enclose the substitution with extra quotes as in this
-example:
-
-.. code-block:: console
-
-  dzu@krikkit:~$ ls `gnome-recent`
-  ls: cannot access '/home/dzu/Downloads/Scanned': No such file or directory
-  ls: cannot access 'Document.pdf': No such file or directory
-  dzu@krikkit:~$ ls "`gnome-recent`"
-  '/home/dzu/Downloads/Scanned Document.pdf'
-  dzu@krikkit:~$
-    
 Requirements
 ------------
 
