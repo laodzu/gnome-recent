@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ueo pipefail
 
 usage() {
     echo "usage: $0 [-h] [<n>]"                                               1>&2
@@ -14,6 +15,11 @@ function urldecode()
     do
 	echo -e "${REPLY//%/\\x}"
     done
+}
+
+function quote()
+{
+    sed 's|\([ ()]\)|\\\1|g'
 }
 
 while getopts h option
@@ -36,7 +42,7 @@ esac
 item=$(xq -r ".xbel.bookmark[$index].\"@href\"" ~/.local/share/recently-used.xbel)
 if [[ "$item" =~ ^file:// ]]
 then
-    echo "${item/#file:\/\//}" | urldecode
+    echo "${item/#file:\/\//}" | urldecode | quote
 else
-    echo "$item"
+    echo "$item" | quote
 fi
