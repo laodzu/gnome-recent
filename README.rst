@@ -31,11 +31,13 @@ Requirements
 ------------
 
 The shell scripts requires `jq <https://stedolan.github.io/jq/>`_ and
-the ``xq`` tool bundled with `yq <https://github.com/kislyuk/yq>`_.
+the ``xq-python`` tool bundled with `yq
+<https://github.com/kislyuk/yq>`_.
 
-While ``jq`` is usually available in distibutions, ``yq`` can be
-installed via the Python package manager ``pip``.  In a Debian based
-environment these two commands should usually do the trick::
+While ``jq`` and ``yq`` should be available in distibutions, ``yq``
+can be installed via the Python package manager ``pip`` if neccessary.
+In a Debian based environment these two commands should usually do the
+trick::
 
   sudo apt install jq
   pip3 install yq

@@ -39,7 +39,7 @@ case $# in
 	;;
 esac
 
-item=$(xq -r ".xbel.bookmark[$index].\"@href\"" ~/.local/share/recently-used.xbel)
+item=$(xq-python -r ".xbel.bookmark[$index].\"@href\"" ~/.local/share/recently-used.xbel)
 if [[ "$item" =~ ^file:// ]]
 then
     echo "${item/#file:\/\//}" | urldecode | quote
